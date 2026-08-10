@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Special Day ❤️</title>
+    
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #12001f, #3b073f, #18002b);
+      color: white;
+    }
+
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: min(90%, 650px);
+      padding: 45px 30px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 40px rgba(255, 0, 150, 0.25);
+      border: 1px solid rgba(255,255,255,0.15);
+      animation: appear 2s ease;
+    }
+
+    .heart {
+      font-size: 80px;
+      animation: heartbeat 1.3s infinite;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(35px, 8vw, 65px);
+      margin-bottom: 15px;
+      background: linear-gradient(90deg, #ff6ec7, #fff, #ff8bd8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    button {
+      border: none;
+      outline: none;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(45deg, #ff1493, #ff4db8);
+      box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 35px rgba(255, 20, 147, 0.6);
+    }
+
+    .message {
+      margin-top: 25px;
+      font-size: 18px;
+      line-height: 1.8;
+      display: none;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -30px;
+      font-size: 20px;
+      animation: floatUp linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  .typing {
+  min-height: 32px;
+  font-size: 21px;
+  color: #ffb6e6;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.typing::after {
+  content: "|";
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+.message {
+  margin-top: 25px;
+  font-size: 18px;
+  line-height: 1.8;
+  display: none;
+  animation: messageReveal 1.2s ease forwards;
+  text-shadow: 0 0 10px rgba(255, 120, 210, 0.4);
+}
+
+@keyframes messageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.card.love-mode {
+  animation: loveGlow 1.5s ease infinite alternate;
+}
+
+@keyframes loveGlow {
+  from {
+    box-shadow: 0 0 40px rgba(255, 0, 150, 0.25);
+  }
+
+  to {
+    box-shadow:
+      0 0 45px rgba(255, 20, 147, 0.65),
+      0 0 90px rgba(255, 105, 180, 0.3);
+  }
+}
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px white;
+  animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+.surprise {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, #5c0b4f, #18001f 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.15);
+  transition: all 1.2s ease;
+  z-index: 9999;
+}
+
+.surprise.show {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.surprise-content {
+  padding: 30px;
+  animation: surpriseAppear 1.5s ease;
+}
+
+.big-heart {
+  font-size: 100px;
+  animation: heartbeat 1s infinite;
+  margin-bottom: 20px;
+}
+
+.surprise h2 {
+  font-size: clamp(40px, 9vw, 75px);
+  background: linear-gradient(90deg, #ff70c8, #fff, #ff70c8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 15px;
+}
+
+.surprise h3 {
+  font-size: clamp(25px, 5vw, 40px);
+  margin-bottom: 25px;
+}
+
+.surprise p {
+  font-size: 20px;
+  line-height: 1.8;
+  color: #ffd9f2;
+}
+
+.forever {
+  margin-top: 30px;
+  font-size: 18px;
+  color: #ff9bd8;
+  letter-spacing: 2px;
+}
+
+@keyframes surpriseAppear {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 18px;
+  z-index: 10000;
+  animation: sparkleBurst 1.5s ease-out forwards;
+}
+
+@keyframes sparkleBurst {
+  0% {
+    opacity: 1;
+    transform: scale(0.3);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(
+      calc((var(--x) - 50vw)),
+      calc((var(--y) - 50vh))
+    ) scale(1.8) rotate(360deg);
+  }
+}
+.cartoon-couple {
+  margin-bottom: 10px;
+  position: relative;
+  animation: coupleFloat 3s ease-in-out infinite;
+}
+
+.couple {
+  font-size: 75px;
+  filter: drop-shadow(0 0 15px rgba(255, 120, 210, 0.6));
+}
+
+.couple-hearts {
+  position: absolute;
+  width: 100%;
+  top: -5px;
+  left: 0;
+  font-size: 18px;
+  letter-spacing: 12px;
+  animation: heartPop 1.5s ease-in-out infinite;
+}
+
+@keyframes coupleFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes heartPop {
+  0%, 100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .couple {
+    font-size: 60px;
+  }
+}
+</style>
+</head>
+
+<body>
+  <div class="stars" id="stars"></div>
+   <div class="container">
+     <div class="card">
+
+      <div class="heart">❤️</div>
+
+      <h1>Aornob ❤️ Noskan</h1>
+           <div class="typing" id="typing"></div>
+      <p class="subtitle">
+        Every moment with you is a beautiful memory. ✨
+      </p>
+
+      <button onclick="showMessage()">
+        Open My Message 💌
+      </button>
+
+      <div class="message" id="message">
+        You are one of the most beautiful parts of my life. ❤️
+        <br>
+        Thank you for every smile, every memory,
+        and every little moment.
+        <br><br>
+        Here's to many more beautiful memories together. 🥹❤️
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let audioStarted = false;
+let audioContext;
+   function showMessage() {
+    playRomanticMusic();
+  const message = document.getElementById("message");
+  const card = document.querySelector(".card");
+  const button = document.querySelector("button");
+
+  message.style.display = "block";
+  card.classList.add("love-mode");
+
+  button.innerHTML = "You are my favorite person ❤️";
+  button.style.pointerEvents = "none";
+
+  for (let i = 0; i < 35; i++) {
+    setTimeout(() => {
+      createHeart();
+    }, i * 60);
+  }
+}
+setTimeout(() => {
+  document.getElementById("surprise").classList.add("show");
+
+  for (let i = 0; i < 60; i++) {
+    setTimeout(() => {
+      createHeart();
+    }, i * 50);
+  }
+}, 4500);
+    function createHeart() {
+      createSparkles();
+      const heart = document.createElement("div");
+
+      heart.classList.add("floating-heart");
+      heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💖";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+      heart.style.fontSize = (15 + Math.random() * 25) + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(() => {
+      if (Math.random() > 0.5) {
+        createHeart();
+      }
+    }, 1200);
+  const text = "Our story is my favorite story. ❤️";
+let index = 0;
+
+function typeText() {
+  if (index < text.length) {
+    document.getElementById("typing").textContent += text.charAt(index);
+    index++;
+    setTimeout(typeText, 80);
+  }
+}
+
+typeText();
+function createStars() {
+  const stars = document.getElementById("stars");
+
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement("div");
+
+    star.classList.add("star");
+
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.animationDelay = Math.random() * 2 + "s";
+    star.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+
+    stars.appendChild(star);
+  }
+}
+
+createStars();
+function playRomanticMusic() {
+  if (audioStarted) return;
+
+  audioStarted = true;
+
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+  const notes = [
+    261.63, 329.63, 392.00,
+    329.63, 293.66, 349.23,
+    392.00, 523.25
+  ];
+
+  let time = audioContext.currentTime;
+
+  notes.forEach((frequency, index) => {
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+
+    gain.gain.setValueAtTime(0, time);
+    gain.gain.linearRampToValueAtTime(0.045, time + 0.08);
+    gain.gain.exponentialRampToValueAtTime(0.001, time + 1.1);
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start(time);
+    oscillator.stop(time + 1.15);
+
+    time += 0.7;
+  });
+}
+function createSparkles() {
+  const symbols = ["✨", "💖", "💕", "✦"];
+
+  for (let i = 0; i < 35; i++) {
+    const sparkle = document.createElement("div");
+
+    sparkle.classList.add("sparkle");
+    sparkle.innerHTML =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    sparkle.style.left = "50vw";
+    sparkle.style.top = "50vh";
+
+    sparkle.style.setProperty(
+      "--x",
+      Math.random() * 100 + "vw"
+    );
+
+    sparkle.style.setProperty(
+      "--y",
+      Math.random() * 100 + "vh"
+    );
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+      sparkle.remove();
+    }, 1600);
+  }
+}
+</script>
+<div class="surprise" id="surprise">
+  <div class="surprise-content">
+    <div class="cartoon-couple">
+  <div class="couple">🫂</div>
+  <div class="couple-hearts">💕 💗 💕</div>
+</div>
+    <div class="big-heart">❤️</div>
+
+    <h2>Happy Anniversary</h2>
+
+    <h3>Aornob ❤️ Noskan</h3>
+
+  <p class="romantic-text">
+  তুমি আমার জীবনের সবচেয়ে special মানুষ। ❤️
+  <br><br>
+  যত দিনই যাক, তোমাকে প্রতিদিন নতুন করে
+  ভালোবাসতে চাই। 🥹💕
+  <br>
+  তোমার হাসি, তোমার সাথে কাটানো ছোট ছোট মুহূর্ত—
+  সবকিছুই আমার কাছে ভীষণ precious। ✨
+  <br><br>
+  সবসময় এভাবেই আমার পাশে থেকো।
+  <br>
+  তোমাকেই বারবার বেছে নেব। ❤️
+  <br><br>
+  <strong>তুমি আর আমি — এভাবেই, সবসময়। ♾️❤️</strong>
+</p>
+
+
+    <div class="forever">∞ Together Forever ∞</div>
+  </div>
+</div>
+</body>
+</html>
