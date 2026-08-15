@@ -1,311 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Special Day ❤️</title>
-
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    html,body{width:100%;height:100%}
-    body{
-      min-height:100vh;overflow:hidden;font-family:Arial,sans-serif;color:white;
-      background:radial-gradient(circle at 50% 40%,#5a0d50 0%,#25002f 45%,#100019 100%);
-    }
-
-    .stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-    .star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;opacity:.7;animation:twinkle 2.5s infinite ease-in-out}
-    @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.4)}}
-
-    .container{
-      position:relative;z-index:2;width:100%;height:100vh;display:flex;
-      justify-content:center;align-items:center;text-align:center;padding:20px
-    }
-    .card{
-      width:min(90%,650px);padding:40px 28px;border-radius:30px;
-      background:rgba(255,255,255,.07);backdrop-filter:blur(7px);
-      -webkit-backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 0 35px rgba(255,0,150,.20);animation:appear 1.5s ease
-    }
-    .heart{font-size:75px;margin-bottom:12px;animation:heartbeat 1.3s infinite ease-in-out}
-    h1{
-      font-size:clamp(34px,8vw,62px);margin-bottom:18px;
-      background:linear-gradient(90deg,#ff6ec7,#fff,#ff8bd8);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent
-    }
-    .subtitle{font-size:19px;opacity:.9;margin-bottom:28px;line-height:1.6}
-
-    button{
-      border:0;outline:0;padding:15px 32px;border-radius:50px;font-size:17px;
-      font-weight:bold;cursor:pointer;color:white;background:linear-gradient(45deg,#ff1493,#ff4db8);
-      box-shadow:0 7px 20px rgba(255,20,147,.35);transition:transform .25s ease
-    }
-    button:hover{transform:scale(1.06)}
-    button:active{transform:scale(.96)}
-
-    .message{margin-top:25px;font-size:18px;line-height:1.8;display:none;animation:fadeIn 1.2s ease}
-
-    .floating-heart{
-      position:fixed;bottom:-30px;font-size:20px;pointer-events:none;z-index:5;
-      animation:floatUp linear forwards;will-change:transform,opacity
-    }
-    @keyframes floatUp{
-      from{transform:translate3d(0,0,0) rotate(0deg);opacity:1}
-      to{transform:translate3d(0,-110vh,0) rotate(180deg);opacity:0}
-    }
-
-    .surprise{
-      position:fixed;inset:0;
-      background:radial-gradient(circle at center,#650b56,#260025 55%,#100014);
-      display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;
-      opacity:0;visibility:hidden;transform:scale(1.08);
-      transition:opacity 1s ease,transform 1s ease,visibility 1s;
-      z-index:9999;overflow:hidden
-    }
-    .surprise.show{opacity:1;visibility:visible;transform:scale(1)}
-    .surprise-content{position:relative;max-width:650px;width:100%;padding:20px;animation:surpriseAppear 1.2s ease}
-
-    .cute-animal{
-      position:absolute;font-size:55px;z-index:2;animation:cuteFloat 3s ease-in-out infinite;
-      pointer-events:none;will-change:transform
-    }
-    .bunny{left:3%;top:18%}
-    .bear{right:3%;top:20%;animation-delay:.8s}
-    .cat{left:5%;bottom:15%;animation-delay:.4s}
-    @keyframes cuteFloat{
-      0%,100%{transform:translateY(0) rotate(-3deg)}
-      50%{transform:translateY(-12px) rotate(3deg)}
-    }
-
-    .cartoon-couple{margin-bottom:8px;position:relative;animation:coupleFloat 3s ease-in-out infinite}
-    .couple{font-size:68px;display:inline-block;will-change:transform}
-    .couple-hearts{
-      position:absolute;width:100%;top:-4px;left:0;font-size:15px;letter-spacing:8px;
-      animation:heartPop 1.6s infinite ease-in-out
-    }
-    @keyframes coupleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    @keyframes heartPop{0%,100%{opacity:.5;transform:scale(.85)}50%{opacity:1;transform:scale(1.1)}}
-
-    .love-crown{font-size:25px;margin-bottom:3px;animation:sparkleLove 1.5s infinite}
-    @keyframes sparkleLove{0%,100%{opacity:.65;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}
-    .big-heart{font-size:82px;animation:heartbeat 1s infinite ease-in-out;margin-bottom:8px}
-
-    .surprise h2{
-      font-size:clamp(38px,9vw,70px);margin-bottom:12px;
-      background:linear-gradient(90deg,#ff70c8,#fff,#ff70c8);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent
-    }
-    .surprise h3{font-size:clamp(24px,5vw,38px);margin-bottom:22px}
-    .romantic-text{font-size:18px;line-height:1.8;color:#ffe5f5;max-width:600px;margin:auto}
-    .romantic-text strong{color:#ff9edc;font-size:21px;text-shadow:0 0 12px rgba(255,100,200,.45)}
-    .forever{margin-top:25px;font-size:17px;color:#ff9bd8;letter-spacing:2px}
-    .tiny-hearts{margin-top:20px;font-size:18px;letter-spacing:5px;animation:heartWave 2s infinite}
-    @keyframes heartWave{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-
-    .sparkle{
-      position:fixed;pointer-events:none;font-size:17px;z-index:10000;
-      animation:sparkleBurst 1.4s ease-out forwards;will-change:transform,opacity
-    }
-    @keyframes sparkleBurst{
-      0%{opacity:1;transform:scale(.3)}
-      100%{opacity:0;transform:translate(calc(var(--x) - 50vw),calc(var(--y) - 50vh)) scale(1.5) rotate(180deg)}
-    }
-
-    @keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-    @keyframes appear{from{opacity:0;transform:translateY(35px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes surpriseAppear{from{opacity:0;transform:translateY(35px) scale(.9)}to{opacity:1;transform:translateY(0) scale(1)}}
-
-    @media(max-width:600px){
-      .container{padding:14px}
-      .card{
-        width:94%;padding:32px 20px;backdrop-filter:blur(4px);
-        -webkit-backdrop-filter:blur(4px);box-shadow:0 0 20px rgba(255,0,150,.16)
-      }
-      .heart{font-size:65px}.subtitle{font-size:17px}
-      button{padding:14px 26px;font-size:16px}.message{font-size:16px}
-      .star{box-shadow:none}.cute-animal{font-size:40px;filter:none}.couple{font-size:58px}
-      .big-heart{font-size:68px}.romantic-text{font-size:16px;line-height:1.75}
-      .romantic-text strong{font-size:18px}.forever{font-size:15px}.tiny-hearts{font-size:16px}
-    }
-    @media(max-width:380px){
-      .card{padding:25px 16px}.heart{font-size:55px}.cute-animal{font-size:32px}
-      .couple{font-size:50px}.big-heart{font-size:58px}.surprise-content{padding:10px}
-      .romantic-text{font-size:15px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For You, Darling ❤️</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}body{overflow:hidden;font-family:Arial,sans-serif;color:#fff;background:radial-gradient(circle at 50% 35%,#650d59,#29002f 50%,#0d0015)}
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;transition:.8s;z-index:2}.hidden{opacity:0!important;visibility:hidden!important;transform:scale(1.04)!important}
+.card{width:min(94%,650px);padding:35px 22px;border-radius:30px;background:#ffffff12;border:1px solid #ffffff22;backdrop-filter:blur(4px);box-shadow:0 0 35px #ff00962b}
+.open{z-index:20;background:radial-gradient(circle,#690e5a,#220028 65%,#0d0015)}.couple{font-size:70px;animation:float 2.5s infinite}.card h1{font-size:clamp(35px,8vw,60px);margin:12px 0;background:linear-gradient(90deg,#ff70c8,#fff,#ff70c8);-webkit-background-clip:text;color:transparent}.card h2{font-size:clamp(30px,7vw,54px);margin-bottom:10px}.card h3{font-size:25px;color:#ffb1e0;margin-bottom:18px}.card p{font-size:18px;line-height:1.8;color:#ffe9f7;margin-bottom:24px}
+.btn{border:0;padding:14px 28px;border-radius:999px;color:#fff;font-size:17px;font-weight:bold;background:linear-gradient(45deg,#ff1493,#ff61c0);box-shadow:0 8px 24px #ff14934d;cursor:pointer}.btn:active{transform:scale(.96)}
+.letter{display:none;margin-top:20px;padding:18px;border-radius:20px;background:#ffffff0d;font-size:17px;line-height:1.9;color:#fff0fa;animation:fade 1s}.letter.show{display:block}.next{display:none;margin-top:18px}.next.show{display:inline-block}
+.final{z-index:10;background:radial-gradient(circle,#690d59,#250029 58%,#0d0015);overflow:hidden}.final .inner{max-width:680px}.animals{font-size:44px;letter-spacing:8px}.final h2{font-size:clamp(38px,9vw,70px);margin:10px 0;background:linear-gradient(90deg,#ff72c7,#fff,#ff72c7);-webkit-background-clip:text;color:transparent}.final h3{font-size:30px;margin-bottom:18px}.final p{font-size:17px;line-height:1.9;color:#ffe9f6}.final strong{color:#ffacdF;font-size:20px}.forever{margin-top:18px;color:#ff9edb;letter-spacing:2px}.secret{display:none;margin:18px auto 0;padding:17px;border-radius:20px;background:#ffffff10;font-size:17px;line-height:1.8}.secret.show{display:block;animation:fade 1s}
+.star{position:fixed;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.7;animation:twinkle 2.5s infinite;z-index:0}.heart{position:fixed;bottom:-30px;z-index:30;pointer-events:none;animation:rise linear forwards}.spark{position:fixed;z-index:40;pointer-events:none;animation:spark 1.3s forwards}
+@keyframes twinkle{50%{opacity:1;transform:scale(1.5)}}@keyframes float{50%{transform:translateY(-9px)}}@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}@keyframes rise{to{transform:translateY(-110vh) rotate(180deg);opacity:0}}@keyframes spark{to{transform:translate(var(--x),var(--y)) scale(1.5);opacity:0}}
+@media(max-width:600px){.card{padding:30px 18px}.couple{font-size:58px}.card p,.final p{font-size:16px}.animals{font-size:36px}.final h3{font-size:24px}}
+</style>
 </head>
-
 <body>
-  <div class="stars" id="stars"></div>
+<div id="stars"></div>
 
-  <div class="container">
-    <div class="card">
-      <div class="heart">❤️</div>
-      <h1>Aornob ❤️ Noskan</h1>
-      <p class="subtitle">Every moment with you is a beautiful memory. ✨</p>
+<section class="screen open" id="open">
+<div class="card">
+<div class="couple">🧑🏻‍❤️‍🧑🏻</div>
+<h1>Hey, You ❤️</h1>
+<p>Someone made a little corner of the internet<br>just for one very special person. ✨</p>
+<button class="btn" onclick="openSite()">Tap to Open 💌</button>
+</div>
+</section>
 
-      <button onclick="showMessage()">Open My Message 💌</button>
+<section class="screen" id="main">
+<div class="card">
+<div class="couple">❤️</div>
+<h2>Aornob ❤️ Noskan</h2>
+<h3>Our little story ✨</h3>
+<p>কিছু মানুষ জীবনে আসে,<br>আর তারপর জীবনটা একটু বেশি সুন্দর হয়ে যায়। 🥹❤️</p>
+<button class="btn" id="letterBtn" onclick="openLetter()">Open My Letter 💌</button>
+<div class="letter" id="letter">তুমি আমার জীবনের সবচেয়ে special মানুষ। ❤️<br><br>তোমার হাসি, তোমার অভিমান, তোমার সাথে কথা বলা—সবকিছুই আমার কাছে precious। 🥹💕<br><br><strong>No matter how many days pass,<br>I will always choose you. ❤️</strong><br><br>পাশে থেকো। বাকিটা আমরা একসাথে লিখব। ♾️</div>
+<button class="btn next" id="nextBtn" onclick="showFinal()">One Last Surprise ✨</button>
+</div>
+</section>
 
-      <div class="message" id="message">
-        You are one of the most beautiful parts of my life. ❤️
-        <br>
-        Thank you for every smile, every memory, and every little moment.
-        <br><br>
-        Here's to many more beautiful memories together. 🥹❤️
-      </div>
-    </div>
-  </div>
+<section class="screen final hidden" id="final">
+<div class="inner">
+<div class="animals">🐰 💕 🐻 💕 🐱</div>
+<div class="couple">🧑🏻‍❤️‍🧑🏻</div>
+<h2>Happy Anniversary</h2><h3>Aornob ❤️ Noskan</h3>
+<p>তুমি আমার জীবনের সবচেয়ে special মানুষ। ❤️<br><br>যত দিনই যাক, তোমাকে প্রতিদিন নতুন করে ভালোবাসতে চাই। 🥹💕<br>তোমার হাসি আর তোমার সাথে কাটানো ছোট ছোট মুহূর্তগুলো আমার কাছে সবসময় precious থাকবে। ✨<br><br>সবসময় এভাবেই আমার পাশে থেকো।<br><strong>তোমাকেই বারবার বেছে নেব। ❤️</strong><br><br><strong>তুমি আর আমি — এভাবেই, সবসময়। ♾️❤️</strong></p>
+<div class="forever">∞ Together Forever ∞</div>
+<button class="btn" style="margin-top:20px" onclick="secret()">For You, One More Thing 💗</button>
+<div class="secret" id="secret">যদি আমাকে আবারও choose করার সুযোগ দেওয়া হয়,<br>আমি আবারও তোমাকেই choose করব। ❤️<br><br><strong>Because you're my favorite person. 🥹💕</strong></div>
+</div>
+</section>
 
-  <div class="surprise" id="surprise">
-    <div class="cute-animal bunny">🐰💗</div>
-    <div class="cute-animal bear">🐻💕</div>
-    <div class="cute-animal cat">🐱💖</div>
-
-    <div class="surprise-content">
-      <div class="cartoon-couple">
-        <div class="couple"> </div>
-        <div class="couple-hearts">💕 💗 💕</div>
-      </div>
-
-      <div class="love-crown">✨💗✨</div>
-      <div class="big-heart">❤️</div>
-
-      <h2>Happy Anniversary</h2>
-      <h3>Aornob ❤️ Noskan</h3>
-
-      <p class="romantic-text">
-        তুমি আমার জীবনের সবচেয়ে special মানুষ। ❤️
-        <br><br>
-        যত দিনই যাক, তোমাকে প্রতিদিন নতুন করে ভালোবাসতে চাই। 🥹💕
-        <br>
-        তোমার হাসি, তোমার সাথে কাটানো ছোট ছোট মুহূর্ত—
-        সবকিছুই আমার কাছে ভীষণ precious। ✨
-        <br><br>
-        সবসময় এভাবেই আমার পাশে থেকো।
-        <br>
-        তোমাকেই বারবার বেছে নেব। ❤️
-        <br><br>
-        <strong>তুমি আর আমি — এভাবেই, সবসময়। ♾️❤️</strong>
-      </p>
-
-      <div class="forever">∞ Together Forever ∞</div>
-      <div class="tiny-hearts">💕 💗 💕 💗 💕</div>
-    </div>
-  </div>
-
-  <script>
-    let audioStarted = false;
-    let audioContext;
-
-    function playRomanticMusic(){
-      if(audioStarted)return;
-      audioStarted=true;
-
-      try{
-        audioContext=new(window.AudioContext||window.webkitAudioContext)();
-
-        const notes=[261.63,329.63,392.00,329.63,293.66,349.23,392.00,523.25];
-        let time=audioContext.currentTime;
-
-        notes.forEach(frequency=>{
-          const oscillator=audioContext.createOscillator();
-          const gain=audioContext.createGain();
-
-          oscillator.type="sine";
-          oscillator.frequency.value=frequency;
-
-          gain.gain.setValueAtTime(0,time);
-          gain.gain.linearRampToValueAtTime(.035,time+.08);
-          gain.gain.exponentialRampToValueAtTime(.001,time+.9);
-
-          oscillator.connect(gain);
-          gain.connect(audioContext.destination);
-
-          oscillator.start(time);
-          oscillator.stop(time+1);
-          time+=.65;
-        });
-      }catch(error){
-        console.log("Audio unavailable");
-      }
-    }
-
-    function showMessage(){
-      playRomanticMusic();
-
-      const message=document.getElementById("message");
-      const button=document.querySelector("button");
-
-      message.style.display="block";
-      button.innerHTML="You are my favorite person ❤️";
-      button.style.pointerEvents="none";
-
-      for(let i=0;i<18;i++){
-        setTimeout(()=>createHeart(),i*70);
-      }
-
-      setTimeout(()=>{
-        createSparkles();
-        document.getElementById("surprise").classList.add("show");
-
-        for(let i=0;i<25;i++){
-          setTimeout(()=>createHeart(),i*55);
-        }
-      },3500);
-    }
-
-    function createHeart(){
-      const heart=document.createElement("div");
-      heart.classList.add("floating-heart");
-      heart.innerHTML=Math.random()>.5?"❤️":"💖";
-      heart.style.left=Math.random()*100+"vw";
-      heart.style.animationDuration=(4+Math.random()*3)+"s";
-      heart.style.fontSize=(14+Math.random()*18)+"px";
-
-      document.body.appendChild(heart);
-      setTimeout(()=>heart.remove(),7500);
-    }
-
-    function createStars(){
-      const stars=document.getElementById("stars");
-
-      for(let i=0;i<35;i++){
-        const star=document.createElement("div");
-        star.classList.add("star");
-        star.style.left=Math.random()*100+"vw";
-        star.style.top=Math.random()*100+"vh";
-        star.style.animationDelay=Math.random()*2+"s";
-        star.style.animationDuration=(1.8+Math.random()*2)+"s";
-        stars.appendChild(star);
-      }
-    }
-
-    function createSparkles(){
-      const symbols=["✨","💖","💕","✦"];
-
-      for(let i=0;i<20;i++){
-        const sparkle=document.createElement("div");
-        sparkle.classList.add("sparkle");
-        sparkle.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
-
-        sparkle.style.left="50vw";
-        sparkle.style.top="50vh";
-        sparkle.style.setProperty("--x",Math.random()*100+"vw");
-        sparkle.style.setProperty("--y",Math.random()*100+"vh");
-
-        document.body.appendChild(sparkle);
-        setTimeout(()=>sparkle.remove(),1500);
-      }
-    }
-
-    createStars();
-
-    setInterval(()=>{
-      if(document.visibilityState==="visible" && Math.random()>.65){
-        createHeart();
-      }
-    },1800);
-  </script>
+<script>
+const stars=document.getElementById('stars');for(let i=0;i<32;i++){let s=document.createElement('i');s.className='star';s.style.left=Math.random()*100+'vw';s.style.top=Math.random()*100+'vh';s.style.animationDelay=Math.random()*2.5+'s';stars.appendChild(s)}
+function heart(){let h=document.createElement('div');h.className='heart';h.textContent=Math.random()>.5?'❤️':'💖';h.style.left=Math.random()*100+'vw';h.style.fontSize=14+Math.random()*18+'px';h.style.animationDuration=4+Math.random()*3+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),7500)}
+function burst(n){for(let i=0;i<n;i++)setTimeout(heart,i*55)}
+function openSite(){document.getElementById('open').classList.add('hidden');burst(12)}
+function openLetter(){document.getElementById('letter').classList.add('show');document.getElementById('letterBtn').style.display='none';document.getElementById('nextBtn').classList.add('show');burst(15)}
+function showFinal(){document.getElementById('final').classList.remove('hidden');burst(25);for(let i=0;i<18;i++)setTimeout(()=>{let s=document.createElement('div');s.className='spark';s.textContent=['✨','💕','💖','✦'][Math.floor(Math.random()*4)];s.style.left='50vw';s.style.top='50vh';s.style.setProperty('--x',(Math.random()*260-130)+'px');s.style.setProperty('--y',(Math.random()*420-210)+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),1400)},i*45)}
+function secret(){document.getElementById('secret').classList.toggle('show');burst(10)}
+setInterval(()=>{if(document.visibilityState==='visible'&&Math.random()>.7)heart()},1900)
+</script>
 </body>
 </html>
