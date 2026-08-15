@@ -6,11 +6,15 @@
 <title>For You, Darling ❤️</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0
+}
 
 html,body{
   min-height:100%;
-  height:auto;
+  height:auto
 }
 
 body{
@@ -19,18 +23,19 @@ body{
   overflow-y:auto;
   font-family:Arial,sans-serif;
   color:#fff;
-  background:radial-gradient(circle at 50% 35%,#650d59,#29002f 50%,#0d0015);
+  background:radial-gradient(circle at 50% 35%,#650d59,#29002f 50%,#0d0015)
 }
 
 .screen{
-  position:relative;
+  position:fixed;
+  inset:0;
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   padding:18px;
-  transition:.8s;
+  transition:opacity .8s ease,transform .8s ease,visibility .8s ease;
   z-index:2;
 }
 
@@ -38,27 +43,29 @@ body{
   opacity:0!important;
   visibility:hidden!important;
   transform:scale(1.04)!important;
+  pointer-events:none!important
 }
 
 .card{
   width:min(94%,650px);
+  max-height:calc(100vh - 36px);
+  overflow-y:auto;
   padding:35px 22px;
   border-radius:30px;
   background:#ffffff12;
   border:1px solid #ffffff22;
   backdrop-filter:blur(4px);
-  box-shadow:0 0 35px #ff00962b;
+  box-shadow:0 0 35px #ff00962b
 }
 
 .open{
-  min-height:100vh;
   z-index:20;
-  background:radial-gradient(circle,#690e5a,#220028 65%,#0d0015);
+  background:radial-gradient(circle,#690e5a,#220028 65%,#0d0015)
 }
 
 .couple{
   font-size:70px;
-  animation:float 2.5s infinite;
+  animation:float 2.5s infinite
 }
 
 .card h1{
@@ -66,25 +73,25 @@ body{
   margin:12px 0;
   background:linear-gradient(90deg,#ff70c8,#fff,#ff70c8);
   -webkit-background-clip:text;
-  color:transparent;
+  color:transparent
 }
 
 .card h2{
   font-size:clamp(30px,7vw,54px);
-  margin-bottom:10px;
+  margin-bottom:10px
 }
 
 .card h3{
   font-size:25px;
   color:#ffb1e0;
-  margin-bottom:18px;
+  margin-bottom:18px
 }
 
 .card p{
   font-size:18px;
   line-height:1.8;
   color:#ffe9f7;
-  margin-bottom:24px;
+  margin-bottom:24px
 }
 
 .btn{
@@ -96,11 +103,11 @@ body{
   font-weight:bold;
   background:linear-gradient(45deg,#ff1493,#ff61c0);
   box-shadow:0 8px 24px #ff14934d;
-  cursor:pointer;
+  cursor:pointer
 }
 
 .btn:active{
-  transform:scale(.96);
+  transform:scale(.96)
 }
 
 .letter{
@@ -112,37 +119,38 @@ body{
   font-size:17px;
   line-height:1.9;
   color:#fff0fa;
-  animation:fade 1s;
+  animation:fade 1s
 }
 
 .letter.show{
-  display:block;
+  display:block
 }
 
 .next{
   display:none;
-  margin-top:18px;
+  margin-top:18px
 }
 
 .next.show{
-  display:inline-block;
+  display:inline-block
 }
 
 .final{
-  min-height:100vh;
   z-index:10;
   background:radial-gradient(circle,#690d59,#250029 58%,#0d0015);
-  overflow:hidden;
+  overflow-y:auto;
+  overflow-x:hidden
 }
 
 .final .inner{
   max-width:680px;
   width:100%;
+  padding:20px 0
 }
 
 .animals{
   font-size:44px;
-  letter-spacing:8px;
+  letter-spacing:8px
 }
 
 .final h2{
@@ -150,29 +158,29 @@ body{
   margin:10px 0;
   background:linear-gradient(90deg,#ff72c7,#fff,#ff72c7);
   -webkit-background-clip:text;
-  color:transparent;
+  color:transparent
 }
 
 .final h3{
   font-size:30px;
-  margin-bottom:18px;
+  margin-bottom:18px
 }
 
 .final p{
   font-size:17px;
   line-height:1.9;
-  color:#ffe9f6;
+  color:#ffe9f6
 }
 
 .final strong{
   color:#ffacdF;
-  font-size:20px;
+  font-size:20px
 }
 
 .forever{
   margin-top:18px;
   color:#ff9edb;
-  letter-spacing:2px;
+  letter-spacing:2px
 }
 
 .secret{
@@ -182,12 +190,12 @@ body{
   border-radius:20px;
   background:#ffffff10;
   font-size:17px;
-  line-height:1.8;
+  line-height:1.8
 }
 
 .secret.show{
   display:block;
-  animation:fade 1s;
+  animation:fade 1s
 }
 
 .star{
@@ -198,7 +206,7 @@ body{
   border-radius:50%;
   opacity:.7;
   animation:twinkle 2.5s infinite;
-  z-index:0;
+  z-index:0
 }
 
 .heart{
@@ -206,88 +214,86 @@ body{
   bottom:-30px;
   z-index:30;
   pointer-events:none;
-  animation:rise linear forwards;
+  animation:rise linear forwards
 }
 
 .spark{
   position:fixed;
   z-index:40;
   pointer-events:none;
-  animation:spark 1.3s forwards;
+  animation:spark 1.3s forwards
 }
 
 @keyframes twinkle{
   50%{
     opacity:1;
-    transform:scale(1.5);
+    transform:scale(1.5)
   }
 }
 
 @keyframes float{
   50%{
-    transform:translateY(-9px);
+    transform:translateY(-9px)
   }
 }
 
 @keyframes fade{
   from{
     opacity:0;
-    transform:translateY(12px);
+    transform:translateY(12px)
   }
   to{
     opacity:1;
-    transform:none;
+    transform:none
   }
 }
 
 @keyframes rise{
   to{
     transform:translateY(-110vh) rotate(180deg);
-    opacity:0;
+    opacity:0
   }
 }
 
 @keyframes spark{
   to{
     transform:translate(var(--x),var(--y)) scale(1.5);
-    opacity:0;
+    opacity:0
   }
 }
 
 @media(max-width:600px){
 
   .screen{
-    min-height:100vh;
-    padding:18px 12px;
-    align-items:center;
+    padding:18px 12px
   }
 
   .card{
     width:100%;
     max-width:650px;
-    padding:30px 18px;
+    max-height:calc(100vh - 36px);
+    padding:30px 18px
   }
 
   .couple{
-    font-size:58px;
+    font-size:58px
   }
 
   .card p,
   .final p{
-    font-size:16px;
+    font-size:16px
   }
 
   .animals{
-    font-size:36px;
+    font-size:36px
   }
 
   .final h3{
-    font-size:24px;
+    font-size:24px
   }
 
-  .final{
-    padding-top:35px;
-    padding-bottom:35px;
+  .final .inner{
+    padding:30px 0
   }
 }
 
@@ -295,13 +301,14 @@ body{
 
   .screen{
     align-items:flex-start;
+    overflow-y:auto;
     padding-top:25px;
-    padding-bottom:25px;
+    padding-bottom:25px
   }
 
   .card{
     margin-top:10px;
-    margin-bottom:10px;
+    margin-bottom:10px
   }
 }
 </style>
@@ -311,8 +318,11 @@ body{
 
 <div id="stars"></div>
 
+
 <section class="screen open" id="open">
+
 <div class="card">
+
 <div class="couple"></div>
 
 <h1>Hey, Senorita❤️</h1>
@@ -327,10 +337,12 @@ Tap to Open 💌
 </button>
 
 </div>
+
 </section>
 
 
-<section class="screen" id="main">
+<section class="screen hidden" id="main">
+
 <div class="card">
 
 <div class="couple">❤️</div>
@@ -357,6 +369,7 @@ I will always choose you. ❤️
 </strong>
 
 <br><br>
+
 সবসময় এভাবেই পাশে থেকো♾️
 </div>
 
@@ -365,10 +378,12 @@ One Last Surprise ✨
 </button>
 
 </div>
+
 </section>
 
 
 <section class="screen final hidden" id="final">
+
 <div class="inner">
 
 <div class="animals">
@@ -421,6 +436,7 @@ Because you're my favorite person. 🥹💕
 </div>
 
 </div>
+
 </section>
 
 
@@ -429,12 +445,15 @@ Because you're my favorite person. 🥹💕
 const stars=document.getElementById('stars');
 
 for(let i=0;i<32;i++){
+
   let s=document.createElement('i');
 
   s.className='star';
 
   s.style.left=Math.random()*100+'vw';
+
   s.style.top=Math.random()*100+'vh';
+
   s.style.animationDelay=Math.random()*2.5+'s';
 
   stars.appendChild(s);
@@ -463,18 +482,30 @@ function heart(){
 
 function burst(n){
 
-  for(let i=0;i<n;i++)
+  for(let i=0;i<n;i++){
+
     setTimeout(heart,i*55);
+
+  }
 
 }
 
 
 function openSite(){
 
-  document.getElementById('open').classList.add('hidden');
+  const open=document.getElementById('open');
+
+  const main=document.getElementById('main');
+
+  open.classList.add('hidden');
+
+  setTimeout(()=>{
+
+    main.classList.remove('hidden');
+
+  },500);
 
   burst(12);
-
 }
 
 
@@ -487,17 +518,26 @@ function openLetter(){
   document.getElementById('nextBtn').classList.add('show');
 
   burst(15);
-
 }
 
 
 function showFinal(){
 
-  document.getElementById('final').classList.remove('hidden');
+  const main=document.getElementById('main');
+
+  const final=document.getElementById('final');
+
+  main.classList.add('hidden');
+
+  setTimeout(()=>{
+
+    final.classList.remove('hidden');
+
+  },500);
 
   burst(25);
 
-  for(let i=0;i<18;i++)
+  for(let i=0;i<18;i++){
 
     setTimeout(()=>{
 
@@ -505,7 +545,9 @@ function showFinal(){
 
       s.className='spark';
 
-      s.textContent=['✨','💕','💖','✦'][Math.floor(Math.random()*4)];
+      s.textContent=
+        ['✨','💕','💖','✦']
+        [Math.floor(Math.random()*4)];
 
       s.style.left='50vw';
 
@@ -527,6 +569,7 @@ function showFinal(){
 
     },i*45);
 
+  }
 }
 
 
@@ -535,7 +578,6 @@ function secret(){
   document.getElementById('secret').classList.toggle('show');
 
   burst(10);
-
 }
 
 
@@ -544,8 +586,11 @@ setInterval(()=>{
   if(
     document.visibilityState==='visible' &&
     Math.random()>.7
-  )
+  ){
+
     heart();
+
+  }
 
 },1900);
 
