@@ -2,29 +2,35 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#16001f">
+
 <title>For You, Darling ❤️</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0
+  padding:0;
 }
 
-html,body{
-  min-height:100%;
-  height:auto
+html{
+  scroll-behavior:smooth;
 }
 
 body{
   min-height:100vh;
   overflow-x:hidden;
-  overflow-y:auto;
-  font-family:Arial,sans-serif;
+  font-family:Arial, "Noto Sans Bengali", sans-serif;
   color:#fff;
-  background:radial-gradient(circle at 50% 35%,#650d59,#29002f 50%,#0d0015)
+  background:
+    radial-gradient(circle at 50% 20%,#650d59,#29002f 52%,#0d0015);
 }
+
+/* =========================
+   GENERAL SCREEN
+========================= */
 
 .screen{
   position:fixed;
@@ -35,7 +41,10 @@ body{
   justify-content:center;
   text-align:center;
   padding:18px;
-  transition:opacity .8s ease,transform .8s ease,visibility .8s ease;
+  transition:
+    opacity .8s ease,
+    transform .8s ease,
+    visibility .8s ease;
   z-index:2;
 }
 
@@ -43,465 +52,1587 @@ body{
   opacity:0!important;
   visibility:hidden!important;
   transform:scale(1.04)!important;
-  pointer-events:none!important
+  pointer-events:none!important;
 }
 
+/* =========================
+   CARD
+========================= */
+
 .card{
-  width:min(94%,650px);
+  width:min(94%,680px);
   max-height:calc(100vh - 36px);
   overflow-y:auto;
-  padding:35px 22px;
+  overflow-x:hidden;
+
+  padding:36px 24px;
+
   border-radius:30px;
-  background:#ffffff12;
-  border:1px solid #ffffff22;
-  backdrop-filter:blur(4px);
-  box-shadow:0 0 35px #ff00962b
+
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.14);
+
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+
+  box-shadow:
+    0 0 35px rgba(255,0,150,.16);
+
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
 }
+
+/* =========================
+   OPEN SCREEN
+========================= */
 
 .open{
   z-index:20;
-  background:radial-gradient(circle,#690e5a,#220028 65%,#0d0015)
+  background:
+    radial-gradient(circle,#690e5a,#220028 65%,#0d0015);
 }
 
 .couple{
   font-size:70px;
-  animation:float 2.5s infinite
+  animation:float 2.5s ease-in-out infinite;
 }
 
-.card h1{
+.open h1{
   font-size:clamp(35px,8vw,60px);
   margin:12px 0;
-  background:linear-gradient(90deg,#ff70c8,#fff,#ff70c8);
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff70c8,
+      #fff,
+      #ff70c8
+    );
+
   -webkit-background-clip:text;
-  color:transparent
+  background-clip:text;
+  color:transparent;
 }
 
-.card h2{
-  font-size:clamp(30px,7vw,54px);
-  margin-bottom:10px
-}
-
-.card h3{
-  font-size:25px;
-  color:#ffb1e0;
-  margin-bottom:18px
-}
-
-.card p{
+.open p{
   font-size:18px;
   line-height:1.8;
   color:#ffe9f7;
-  margin-bottom:24px
+  margin-bottom:26px;
 }
+
+/* =========================
+   BUTTON
+========================= */
 
 .btn{
   border:0;
+  outline:none;
+
   padding:14px 28px;
+
   border-radius:999px;
+
   color:#fff;
   font-size:17px;
   font-weight:bold;
-  background:linear-gradient(45deg,#ff1493,#ff61c0);
-  box-shadow:0 8px 24px #ff14934d;
-  cursor:pointer
+
+  background:
+    linear-gradient(
+      45deg,
+      #ff1493,
+      #ff61c0
+    );
+
+  box-shadow:
+    0 8px 24px rgba(255,20,147,.3);
+
+  cursor:pointer;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.btn:hover{
+  transform:scale(1.04);
+  box-shadow:
+    0 10px 30px rgba(255,20,147,.45);
 }
 
 .btn:active{
-  transform:scale(.96)
+  transform:scale(.96);
 }
+
+/* =========================
+   MAIN INTRO
+========================= */
+
+.main-title{
+  font-size:clamp(30px,7vw,50px);
+  margin:10px 0 18px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff70c8,
+      #fff,
+      #ff70c8
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.intro-text{
+  font-size:18px;
+  line-height:1.9;
+  color:#ffe9f7;
+}
+
+/* =========================
+   LETTER
+========================= */
 
 .letter{
   display:none;
-  margin-top:20px;
-  padding:18px;
-  border-radius:20px;
-  background:#ffffff0d;
+
+  margin-top:22px;
+  padding:20px;
+
+  border-radius:22px;
+
+  background:rgba(255,255,255,.055);
+
   font-size:17px;
   line-height:1.9;
+
   color:#fff0fa;
-  animation:fade 1s
+
+  animation:fade 1s ease;
 }
 
 .letter.show{
-  display:block
+  display:block;
 }
 
-.next{
-  display:none;
-  margin-top:18px
+.letter strong{
+  color:#ffb3df;
+  font-size:19px;
 }
 
-.next.show{
-  display:inline-block
-}
+/* =========================
+   STORY SCREEN
+========================= */
 
-.final{
+.story{
+  position:fixed;
+  inset:0;
+
   z-index:10;
-  background:radial-gradient(circle,#690d59,#250029 58%,#0d0015);
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      #690d59,
+      #250029 58%,
+      #0d0015
+    );
+
   overflow-y:auto;
-  overflow-x:hidden
+  overflow-x:hidden;
+
+  -webkit-overflow-scrolling:touch;
+
+  display:flex;
+  justify-content:center;
+
+  padding:30px 14px 70px;
 }
 
-.final .inner{
-  max-width:680px;
+.story-inner{
   width:100%;
-  padding:20px 0
+  max-width:720px;
+
+  text-align:center;
 }
+
+/* =========================
+   ANIMALS
+========================= */
 
 .animals{
-  font-size:44px;
-  letter-spacing:8px
+  font-size:42px;
+  letter-spacing:5px;
+  margin-bottom:8px;
+
+  animation:animalFloat 3s ease-in-out infinite;
 }
 
-.final h2{
-  font-size:clamp(38px,9vw,70px);
-  margin:10px 0;
-  background:linear-gradient(90deg,#ff72c7,#fff,#ff72c7);
+/* =========================
+   STORY TITLE
+========================= */
+
+.story h2{
+  font-size:clamp(38px,9vw,66px);
+
+  margin:8px 0 6px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff72c7,
+      #fff,
+      #ff72c7
+    );
+
   -webkit-background-clip:text;
-  color:transparent
+  background-clip:text;
+  color:transparent;
 }
 
-.final h3{
-  font-size:30px;
-  margin-bottom:18px
+.story h3{
+  font-size:26px;
+  color:#ffb0df;
+  margin-bottom:30px;
 }
 
-.final p{
+/* =========================
+   STORY BLOCK
+========================= */
+
+.story-block{
+  text-align:left;
+
+  margin:0 auto 22px;
+
+  padding:22px 20px;
+
+  border-radius:24px;
+
+  background:rgba(255,255,255,.055);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.08);
+
+  animation:fadeUp .8s ease both;
+}
+
+.story-block h4{
+  text-align:center;
+
+  font-size:22px;
+
+  color:#ff9edb;
+
+  margin-bottom:15px;
+}
+
+.story-block p{
   font-size:17px;
-  line-height:1.9;
-  color:#ffe9f6
+  line-height:2;
+
+  color:#ffe9f6;
+
+  word-break:normal;
+  overflow-wrap:break-word;
 }
 
-.final strong{
+.story-block strong{
+  color:#ffb2df;
+  font-size:19px;
+}
+
+/* =========================
+   SPECIAL QUOTE
+========================= */
+
+.special{
+  margin:25px 0;
+
+  padding:25px 18px;
+
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,20,147,.12),
+      rgba(255,255,255,.06)
+    );
+
+  border:1px solid rgba(255,145,210,.2);
+
+  text-align:center;
+
+  box-shadow:
+    0 0 30px rgba(255,20,147,.08);
+}
+
+.special p{
+  font-size:20px;
+  line-height:1.9;
+  color:#fff;
+}
+
+.special strong{
+  color:#ff9edb;
+}
+
+/* =========================
+   END MESSAGE
+========================= */
+
+.end-message{
+  margin-top:30px;
+
+  padding:28px 20px;
+
+  border-radius:28px;
+
+  background:rgba(255,255,255,.07);
+
+  border:1px solid rgba(255,255,255,.12);
+
+  text-align:center;
+
+  box-shadow:
+    0 0 35px rgba(255,0,150,.12);
+}
+
+.end-message h3{
+  font-size:30px;
+  color:#ff9edb;
+  margin-bottom:20px;
+}
+
+.end-message p{
+  font-size:18px;
+  line-height:2;
+  color:#ffe9f7;
+}
+
+.love{
+  margin-top:22px;
+
+  font-size:21px;
+  line-height:1.8;
+
   color:#ffacdF;
-  font-size:20px
+  font-weight:bold;
 }
 
 .forever{
-  margin-top:18px;
+  margin-top:20px;
+
+  font-size:19px;
+
   color:#ff9edb;
-  letter-spacing:2px
+
+  letter-spacing:2px;
 }
+
+/* =========================
+   SECRET
+========================= */
 
 .secret{
   display:none;
-  margin:18px auto 0;
-  padding:17px;
-  border-radius:20px;
-  background:#ffffff10;
+
+  margin:20px auto 0;
+
+  padding:20px;
+
+  border-radius:22px;
+
+  background:rgba(255,255,255,.07);
+
   font-size:17px;
-  line-height:1.8
+  line-height:1.9;
+
+  color:#fff0fa;
 }
 
 .secret.show{
   display:block;
-  animation:fade 1s
+  animation:fade 1s ease;
 }
 
-.star{
-  position:fixed;
-  width:2px;
-  height:2px;
-  background:#fff;
-  border-radius:50%;
-  opacity:.7;
-  animation:twinkle 2.5s infinite;
-  z-index:0
-}
+/* =========================
+   HEARTS
+========================= */
 
 .heart{
   position:fixed;
-  bottom:-30px;
-  z-index:30;
+
+  bottom:-35px;
+
+  z-index:50;
+
   pointer-events:none;
-  animation:rise linear forwards
+
+  animation:rise linear forwards;
 }
+
+/* =========================
+   STARS
+========================= */
+
+.star{
+  position:fixed;
+
+  width:2px;
+  height:2px;
+
+  background:#fff;
+
+  border-radius:50%;
+
+  opacity:.65;
+
+  animation:twinkle 2.5s infinite;
+
+  z-index:0;
+
+  pointer-events:none;
+}
+
+/* =========================
+   SPARK
+========================= */
 
 .spark{
   position:fixed;
-  z-index:40;
+
+  z-index:60;
+
   pointer-events:none;
-  animation:spark 1.3s forwards
+
+  animation:spark 1.3s forwards;
 }
+
+/* =========================
+   ANIMATIONS
+========================= */
 
 @keyframes twinkle{
   50%{
     opacity:1;
-    transform:scale(1.5)
+    transform:scale(1.5);
   }
 }
 
 @keyframes float{
   50%{
-    transform:translateY(-9px)
+    transform:translateY(-9px);
+  }
+}
+
+@keyframes animalFloat{
+  50%{
+    transform:translateY(-6px);
   }
 }
 
 @keyframes fade{
   from{
     opacity:0;
-    transform:translateY(12px)
+    transform:translateY(12px);
   }
+
   to{
     opacity:1;
-    transform:none
+    transform:none;
+  }
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
 
 @keyframes rise{
   to{
-    transform:translateY(-110vh) rotate(180deg);
-    opacity:0
+    transform:
+      translateY(-110vh)
+      rotate(180deg);
+
+    opacity:0;
   }
 }
 
 @keyframes spark{
   to{
-    transform:translate(var(--x),var(--y)) scale(1.5);
-    opacity:0
+    transform:
+      translate(var(--x),var(--y))
+      scale(1.5);
+
+    opacity:0;
   }
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
   .screen{
-    padding:18px 12px
+    padding:14px 10px;
   }
 
   .card{
     width:100%;
-    max-width:650px;
-    max-height:calc(100vh - 36px);
-    padding:30px 18px
+    max-height:calc(100vh - 28px);
+
+    padding:28px 16px;
+
+    border-radius:26px;
   }
 
   .couple{
-    font-size:58px
+    font-size:56px;
   }
 
-  .card p,
-  .final p{
-    font-size:16px
+  .open p{
+    font-size:16px;
+  }
+
+  .intro-text{
+    font-size:16px;
+  }
+
+  .letter{
+    font-size:16px;
+    line-height:1.85;
+    padding:17px;
+  }
+
+  .story{
+    padding:
+      25px
+      11px
+      60px;
+  }
+
+  .story-inner{
+    width:100%;
   }
 
   .animals{
-    font-size:36px
+    font-size:34px;
+    letter-spacing:2px;
   }
 
-  .final h3{
-    font-size:24px
+  .story h2{
+    font-size:38px;
   }
 
-  .final .inner{
-    padding:30px 0
+  .story h3{
+    font-size:23px;
+    margin-bottom:24px;
+  }
+
+  .story-block{
+    padding:19px 16px;
+    margin-bottom:18px;
+    border-radius:21px;
+  }
+
+  .story-block h4{
+    font-size:20px;
+  }
+
+  .story-block p{
+    font-size:16px;
+    line-height:1.95;
+  }
+
+  .story-block strong{
+    font-size:18px;
+  }
+
+  .special{
+    padding:22px 15px;
+  }
+
+  .special p{
+    font-size:18px;
+  }
+
+  .end-message{
+    padding:24px 16px;
+  }
+
+  .end-message h3{
+    font-size:26px;
+  }
+
+  .end-message p{
+    font-size:16px;
+    line-height:1.95;
+  }
+
+  .love{
+    font-size:19px;
+  }
+
+  .forever{
+    font-size:17px;
+  }
+
+  .btn{
+    font-size:16px;
+    padding:13px 24px;
   }
 }
+
+/* =========================
+   SMALL HEIGHT PHONE
+========================= */
 
 @media(max-height:650px){
 
   .screen{
     align-items:flex-start;
     overflow-y:auto;
-    padding-top:25px;
-    padding-bottom:25px
+    padding-top:20px;
+    padding-bottom:25px;
   }
 
   .card{
-    margin-top:10px;
-    margin-bottom:10px
+    margin-top:8px;
+    margin-bottom:8px;
   }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div id="stars"></div>
 
 
+<!-- =========================
+     OPEN SCREEN
+========================= -->
+
 <section class="screen open" id="open">
 
-<div class="card">
+  <div class="card">
 
-<div class="couple"></div>
+    <div class="couple">
+      🐰💕
+    </div>
 
-<h1>Hey, Senorita❤️</h1>
+    <h1>
+      Hey, Senorita ❤️
+    </h1>
 
-<p>
-Aornob made a little Surprise <br>
-For her cute Sparrow ✨
-</p>
+    <p>
+      Aornob made a little surprise<br>
+      for his favorite person ✨❤️
+    </p>
 
-<button class="btn" onclick="openSite()">
-Tap to Open 💌
-</button>
+    <button class="btn" onclick="openSite()">
+      Tap to Open 💌
+    </button>
 
-</div>
+  </div>
 
 </section>
 
+
+
+<!-- =========================
+     INTRO SCREEN
+========================= -->
 
 <section class="screen hidden" id="main">
 
-<div class="card">
+  <div class="card">
 
-<div class="couple">❤️</div>
+    <div class="couple">
+      🐻❤️
+    </div>
 
-<h2>Our little story ✨❤️</h2>
+    <h2 class="main-title">
+      Our Little Story ✨
+    </h2>
 
-<p>
-প্রতিটা মানুষের জীবনেই একটা সময় এমন একজন বিশেষ মানুষ আসে,<br>
-যারপর থেকে তার জীবনটা ধীরে ধীরে একটু বেশি সুন্দর হয়ে যায়। 🥹❤️ <br>
-আর আমি গর্ব করে বলতে পারি আমার জীবনের সেই মানুষ হলে তুমি
-</p>
+    <p class="intro-text">
 
-<button class="btn" id="letterBtn" onclick="openLetter()">
-Open My Letter 💌
-</button>
+      প্রতিটা মানুষের জীবনেই একটা সময় এমন একজন বিশেষ মানুষ আসে,
+      যারপর থেকে তার জীবনটা ধীরে ধীরে একটু বেশি সুন্দর হয়ে যায়। 🥹❤️
 
-<div class="letter" id="letter">
-তুমি আমার জীবনের সবচেয়ে special মানুষ। ❤️<br><br>
-তোমার হাসি, তোমার অভিমান, তোমার সাথে কথা বলা, যেইটুকু সময় আমি তোমার সাথে সামনা-সামনি ছিলাম — সে সবকিছুই আমার কাছে precious। 🥹💕<br><br>
+      <br><br>
 
-<strong>
-No matter how many days pass,<br>
-I will always choose you. ❤️
-</strong>
+      আর আমি গর্ব করে বলতে পারি—
 
-<br><br>
+      <br>
 
-সবসময় এভাবেই পাশে থেকো♾️
-</div>
+      <strong>
+        আমার জীবনের সেই মানুষটা হলে তুমি। ❤️
+      </strong>
 
-<button class="btn next" id="nextBtn" onclick="showFinal()">
-One Last Surprise ✨
-</button>
+    </p>
+
+
+    <button
+      class="btn"
+      id="letterBtn"
+      onclick="openLetter()"
+    >
+      Open My Letter 💌
+    </button>
+
+
+    <div class="letter" id="letter">
+
+      তুমি আমার জীবনের সবচেয়ে special মানুষ। ❤️
+
+      <br><br>
+
+      তোমার হাসি, তোমার অভিমান, তোমার সাথে কথা বলা,
+      তোমার সাথে কাটানো প্রতিটা ছোট ছোট মুহূর্ত—
+      সবকিছুই আমার কাছে precious। 🥹💕
+
+      <br><br>
+
+      <strong>
+        No matter how many days pass,
+        I will always choose you. ❤️
+      </strong>
+
+      <br><br>
+
+      সবসময় এভাবেই আমার পাশে থেকো। ♾️❤️
+
+    </div>
+
+
+    <button
+      class="btn"
+      id="nextBtn"
+      style="display:none;margin-top:20px"
+      onclick="showFinal()"
+    >
+      Read Our Story ✨
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     FULL STORY
+========================= -->
+
+<section
+  class="story hidden"
+  id="final"
+>
+
+<div class="story-inner">
+
+
+  <div class="animals">
+    🐰 💕 🐻 💕 🐱
+  </div>
+
+
+  <h2>
+    Our Story ❤️
+  </h2>
+
+
+  <h3>
+    Aornob ❤️ Mim
+  </h3>
+
+
+
+  <!-- STORY 01 -->
+
+  <div class="story-block">
+
+    <h4>
+      🌸 যেভাবে শুরু হয়েছিল
+    </h4>
+
+    <p>
+
+      তোমার সাথে আমার প্রথম কথা হয়
+      <strong>২০২৫ সালের ১৬ এপ্রিল।</strong>
+
+      <br><br>
+
+      গ্রুপে থাকা সব মেম্বারের ঘাম ছুটিয়ে দিচ্ছিল
+      একটা ছোট্ট দুষ্টু মেয়ে। 😒❤️
+
+      <br><br>
+
+      তারপর আস্তে আস্তে কথা বলা শুরু হলো।
+      ধীরে ধীরে আমাদের পরিচয় গভীর হতে লাগল।
+      আমরা দুজন দুজনকে আরও কাছ থেকে চিনতে শুরু করলাম।
+
+      <br><br>
+
+      কিন্তু একটা জায়গায় গিয়ে বারবার ইতস্তত বোধ হতো—
+      কারণ পরিচয়ের সময় তুমি আমাকে বলেছিলে,
+      <strong>তুমি বিবাহিত!</strong> 😒
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 02 -->
+
+  <div class="story-block">
+
+    <h4>
+      💕 প্রথম ভালো লাগা
+    </h4>
+
+    <p>
+
+      কিন্তু যেদিন শুনলাম তুমি আসলে বিবাহিত নও,
+      কেন জানি নিজের অজান্তেই মনের মধ্যে অন্যরকম একটা আনন্দ অনুভব করলাম।
+
+      <br><br>
+
+      তখনও বুঝতে পারিনি,
+      এই আনন্দটা কেন হলো।
+
+      <br><br>
+
+      তারপর যখন শুনলাম,
+      তুমি কেন এমন মিথ্যা বলেছিলে—
+      সেটা জানার পর প্রথমবার তোমার প্রতি সত্যিকারের ইমপ্রেস হয়েছিলাম। ❤️
+
+      <br><br>
+
+      তারপরও আমার একটা ভুল ধারণা ছিল—
+      হয়তো তোমার কোনো BF আছে।
+
+      <br><br>
+
+      কিন্তু তোমার সাথে আস্তে আস্তে কথা বলতে বলতে,
+      বিভিন্নভাবে জানতে জানতে যখন বুঝলাম তুমি সিঙ্গেল,
+      ততদিনে বলতে গেলে আমি তোমার ওপর
+      বেশ ভালোভাবেই ইমপ্রেস হয়ে গিয়েছিলাম। ❤️
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 03 -->
+
+  <div class="story-block">
+
+    <h4>
+      🥹 তখন থেকেই তোমাকে নিয়ে ভাবা
+    </h4>
+
+    <p>
+
+      তারপর আমি প্ল্যান শুরু করলাম—
+      জীবনে প্রথমবার কারও প্রতি এমন একটা feeling এসেছে,
+      তাই একবার ট্রাই করেই দেখি! 😌❤️
+
+      <br><br>
+
+      সেই সময় থেকে মাঝে মাঝে ইচ্ছা করেই এমন কিছু করতাম,
+      যেন তুমি একটু হলেও কিছু বুঝতে পারো।
+
+      <br><br>
+
+      তোমার মনের মধ্যে আমাকে নিয়ে একটু হলেও feeling তৈরি হয়।
+      তুমি যেন আমাকে নিয়ে একটু ভাবা শুরু করো।
+
+      <br><br>
+
+      তারপর হঠাৎ একদিন শুনলাম
+      <strong>শিহাবের</strong> কথা।
+
+      <br><br>
+
+      শুনলাম, সে নাকি তোমার ছোটবেলার best friend।
+
+      <br><br>
+
+      সেদিন হুট করেই বুকের মধ্যে একটা মোচড় দিয়ে উঠল।
+      প্রচণ্ড রাগও হলো। 😒
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 04 -->
+
+  <div class="story-block">
+
+    <h4>
+      😂 আমার সেই পাগলামি
+    </h4>
+
+    <p>
+
+      তারপর Facebook-এ খুঁজতে খুঁজতে
+      হন্যে হয়ে একটা ID পেলাম,
+      যেটার সাথে তোমার mutual ছিল।
+
+      <br><br>
+
+      এরপর তুমি প্রায় ৭ দিনের মতো online-এ এলে না।
+
+      <br><br>
+
+      ওই ৭ দিন নিজের কাছেই অনেক কষ্ট লাগছিল।
+      তবুও তোমাকে একটা message দিইনি। 😅
+
+      <br><br>
+
+      বরং একটা fake ID দিয়ে ওই শিহাবের ID
+      ঘুরে ঘুরে দেখতাম—
+      কোথায় তুমি react দিয়েছো,
+      কী করেছো—
+      সবকিছু খুঁজে দেখতাম। 😂❤️
+
+      <br><br>
+
+      তারপর তুমি আবার এলে।
+      আমরা আবার কথা বলা শুরু করলাম।
+
+      <br><br>
+
+      কিন্তু মনের সেই খুঁতটা আর গেল না।
+
+      <br><br>
+
+      পরে অবশ্য তুমি ওকে block করে দিলে।
+      তখন কেন জানি বেশ ভালোই লাগল। 😌❤️
+
+      <br><br>
+
+      ততদিনে তোমাকে পছন্দ করে ফেলেছিলাম ঠিকই,
+      কিন্তু সেটা বলতে পারিনি।
+
+      <br><br>
+
+      এইভাবেই কেটে গেল প্রায় একটা মাস।
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 05 -->
+
+  <div class="story-block">
+
+    <h4>
+      ❤️ সেই ১৭ আগস্ট
+    </h4>
+
+    <p>
+
+      ১৭ আগস্টের আগে management নিয়ে
+      আমি অনেকটাই busy হয়ে গিয়েছিলাম।
+
+      <br><br>
+
+      তোমার সাথে কথা হতো ঠিকই,
+      কিন্তু আগের মতো attention দিতে পারছিলাম না।
+
+      <br><br>
+
+      তারপর এলো
+      <strong>১৭ আগস্ট।</strong>
+
+      <br><br>
+
+      সারাদিন তোমার সাথে আমার কোনো কথা হয়নি।
+      অথচ তুমি আমাকে এত message আর call দিয়েছিলে!
+
+      <br><br>
+
+      আর আমি এমন একটা ভাব করছিলাম,
+      যেন দেখেও কিছু দেখিনি। 😒😂
+
+      <br><br>
+
+      কিন্তু ক্লাস পার্টি শেষ হওয়ার পর
+      যখন একটা খেলায় তোমার কথা জিজ্ঞেস করা হলো,
+      তখন না জানি কেন
+      <strong>এক সেকেন্ডও দেরি না করে তোমাকে আমার GF বলে দিলাম।</strong> ❤️
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 06 -->
+
+  <div class="special">
+
+    <p>
+
+      তারপর রাতে তোমার বকা,
+      তোমার অভিমান,
+      আমাকে নিয়ে তোমার চিন্তা—
+      এসব দেখে আমি একটু হলেও বুঝে গেলাম,
+
+      <br><br>
+
+      <strong>
+        তুমি আমার প্রেমে পড়ে গেছো। 🥹❤️
+      </strong>
+
+      <br><br>
+
+      তারপর রাত
+      <strong>১১টা ৩৫ মিনিটে</strong>
+      আমি তোমাকে propose করলাম।
+
+      <br><br>
+
+      কিন্তু তবুও তোমার মুখ থেকে কিছুই বের করতে পারছিলাম না! 😒😂
+
+      <br><br>
+
+      শেষে অনেক ভান,
+      অনেক মন খারাপের নাটক করার পর
+      অবশেষে তোমার মুখ থেকে সেই কথাটা বের করতে পেরেছিলাম—
+
+      <br><br>
+
+      <strong>
+        তুমিও আমাকে ভালোবাসো। ❤️
+      </strong>
+
+      <br><br>
+
+      আর সেই কথাটা শুনতে শুনতে
+      কখন যে রাত <strong>৩টা ০২ মিনিট</strong>
+      হয়ে গিয়েছিল,
+      আমরা নিজেরাও বুঝিনি।
+
+      <br><br>
+
+      <strong>
+        সেই রাত থেকেই আমাদের পথচলা শুরু। ❤️♾️
+      </strong>
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 07 -->
+
+  <div class="story-block">
+
+    <h4>
+      🥹 আমাদের প্রথম দেখা
+    </h4>
+
+    <p>
+
+      তারপর আমাদের জীবনে এলো
+      অনেক কিউট কিউট মুহূর্ত
+      আর অনেক সুন্দর স্মৃতি,
+      যেগুলো সারাজীবন আমাদের সাথে থাকবে।
+
+      <br><br>
+
+      সেই দিনগুলোর কথা মনে করলেই
+      এখনও মন ভালো হয়ে যায়। ❤️
+
+      <br><br>
+
+      আমাদের relationship-এর প্রায়
+      <strong>৪ মাস পর</strong>,
+      প্রথমবার তোমার সাথে দেখা করতে আমি বের হয়েছিলাম।
+
+      <br><br>
+
+      অচেনা একটা জায়গা।
+      কিছুটা ভয়,
+      কিছুটা excitement
+      আর অনেকটা ভালো লাগা নিয়ে
+      শীতের সকালে আমি নামলাম তোমার শহরে—
+
+      <br><br>
+
+      যে মানুষটা আমার কাছ থেকে প্রায়
+      <strong>৩০০–৪০০ কিলোমিটার দূরে ছিল।</strong>
+
+      <br><br>
+
+      তাকে নিজের থেকে মাত্র কয়েক ফুট দূরে দাঁড়িয়ে থাকতে দেখে
+      যেমন অবাক হয়েছিলাম,
+      তেমনি শীতের সকালের আলোয়
+      তার সুন্দর মুখটা দেখে
+      <strong>নতুন করে আবার তার প্রেমে পড়ে গিয়েছিলাম।</strong> ❤️
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 08 -->
+
+  <div class="special">
+
+    <p>
+
+      তারপর জীবনে প্রথমবার তোমার হাত ধরলাম।
+
+      <br><br>
+
+      <strong>
+        প্রথম দিন তোমার হাত ধরার সময়
+        শুধু আমার হাতই কাঁপছিল না—
+        মনে হয়েছিল পুরো পৃথিবীটাই কেঁপে উঠেছিল। 🥹❤️
+      </strong>
+
+      <br><br>
+
+      ওই মুহূর্তটা কোনোদিন ভোলার মতো নয়।
+
+      <br><br>
+
+      সেই সময়টা সত্যিই অনেক সুন্দর ছিল।
+      একসাথে অনেক সুন্দর দিন কাটিয়েছি আমরা। ❤️
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 09 -->
+
+  <div class="story-block">
+
+    <h4>
+      🏡 তোমার বাসায় প্রথম যাওয়া
+    </h4>
+
+    <p>
+
+      তার ঠিক <strong>৩ মাস পর</strong>
+      আমাদের আবার দেখা হলো।
+
+      <br><br>
+
+      সেবার প্রথমবার আমি তোমার বাসায় গেলাম।
+
+      <br><br>
+
+      সেই কয়েকটা দিন
+      আমার সারাজীবন মনে থাকবে।
+
+      <br><br>
+
+      তোমার সাথে,
+      তোমার পরিবারের সাথে
+      কাটানো সময়গুলো
+      আমি আজও ভুলিনি। ❤️
+
+      <br><br>
+
+      সেই দিনগুলো আমার জীবনের
+      এমন কিছু স্মৃতি,
+      যেগুলো যত বছরই পার হোক,
+      মনে পড়লে আমার মুখে হাসি আসবেই।
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 10 -->
+
+  <div class="story-block">
+
+    <h4>
+      ❤️ তোমাকে নিয়ে আমি Proud
+    </h4>
+
+    <p>
+
+      আমি সত্যিই অনেক
+      <strong>proud feel করি</strong>
+      যে আমার জীবনে তোমার মতো একজন মানুষ পেয়েছি।
+
+      <br><br>
+
+      এর মাঝে আমি অনেক ভুল করেছি।
+      অনেক কিছু করেছি।
+      তোমাকে অনেক কষ্ট দিয়েছি।
+
+      <br><br>
+
+      তারপরও তুমি আমার ভুলগুলো মাফ করে
+      আমার পাশে থেকেছো।
+
+      <br><br>
+
+      কখনো আমাকে ছেড়ে যাওনি।
+
+      <br><br>
+
+      সবসময় আমাকে support করেছো,
+      বুঝেছো,
+      আমার পাশে থেকেছো। ❤️
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 11 -->
+
+  <div class="special">
+
+    <p>
+
+      সত্যি বলতে,
+      আমি তোমার জন্য যতটা করতে চেয়েছি,
+      তার খুব সামান্যই করতে পেরেছি।
+
+      <br><br>
+
+      কিন্তু—
+
+      <br><br>
+
+      <strong>
+        ইনশাআল্লাহ,
+        একদিন আমি তোমার জন্য সবকিছু করব। ❤️
+      </strong>
+
+    </p>
+
+  </div>
+
+
+
+  <!-- STORY 12 -->
+
+  <div class="story-block">
+
+    <h4>
+      🥹 আমাদের গল্পটা
+    </h4>
+
+    <p>
+
+      আমাদের relationship-এর মধ্যে
+       এই গত ১ বছরে,
+      অনেক স্মৃতি,
+      অনেক হাসি,
+      অনেক অভিমান,
+      অনেক ঝগড়া
+      আর তার থেকেও বেশি ভালোবাসা জমে আছে।
+
+      <br><br>
+
+      আমাদের অনেক সুন্দর মুহূর্ত আছে,
+      অনেক cute cute গল্প আছে—
+      যেগুলো হয়তো আমরা দুজন ছাড়া
+      আর কেউ কখনো পুরোপুরি বুঝবে না। 🥹❤️
+
+      <br><br>
+
+      কিন্তু সবকিছুর মাঝে
+      আমি একটা জিনিস পেয়েছি—
+
+    </p>
+
+  </div>
+
+
+
+  <!-- BEST PERSON -->
+
+  <div class="special">
+
+    <p>
+
+      <strong>
+        আমি একজন সেরা মানুষকে পেয়েছি। ❤️
+      </strong>
+
+      <br><br>
+
+      যে আমার জীবনটাকে অনেক সহজ করে দিয়েছে।
+
+      <br><br>
+
+      আমার খারাপ সময়ে পাশে থেকেছে,
+      ভালো সময়ে আমার সাথে আনন্দ ভাগ করে নিয়েছে।
+
+      <br><br>
+
+      আমার প্রয়োজন বোঝার আগেই
+      অনেক সময় বুঝে গেছে আমার কী দরকার।
+
+      <br><br>
+
+      এমন একজন মানুষকে জীবনে পাওয়া
+      সত্যিই অনেক বড় পাওয়া। ❤️
+
+    </p>
+
+  </div>
+
+
+
+  <!-- FINAL MESSAGE -->
+
+  <div class="end-message">
+
+    <h3>
+      শেষ কথা... ❤️
+    </h3>
+
+    <p>
+
+      শেষে শুধু একটা কথাই বলব—
+
+      <br><br>
+
+      <strong>
+        তুমি প্লিজ সারাজীবন এভাবেই আমার পাশে থেকো। ❤️
+      </strong>
+
+      <br><br>
+
+      <strong>
+        I love you re Mim,<br>
+        I love you so, so much. ❤️
+      </strong>
+
+      <br><br>
+
+      আমাকে কখনো একা রেখে যেও না।
+
+      <br><br>
+
+      আমি এভাবেই তোমাকে সাথে নিয়ে
+      আমার সামনের দিনগুলো কাটাতে চাই।
+
+      <br><br>
+
+      শুধু আজ নয়,
+      শুধু এই anniversary নয়—
+
+      <br><br>
+
+      <strong>
+        জীবনের প্রতিটা anniversary
+        তোমার হাত ধরে celebrate করতে চাই। ❤️
+      </strong>
+
+    </p>
+
+
+    <div class="love">
+
+      আজীবন তোমার হাতটা ধরে থাকতে চাই। ❤️♾️
+
+      <br><br>
+
+      তুমি আর আমি—
+      আজ, কাল, সারাজীবন। ❤️
+
+    </div>
+
+
+    <div class="forever">
+      ∞ Together Forever ∞
+    </div>
+
+
+    <button
+      class="btn"
+      style="margin-top:22px"
+      onclick="secret()"
+    >
+      For You, One More Thing 💗
+    </button>
+
+
+    <div
+      class="secret"
+      id="secret"
+    >
+
+      যদি আমাকে আবারও choose করার সুযোগ দেওয়া হয়,
+
+      <br>
+
+      <strong>
+        আমি আবারও তোমাকেই choose করব। ❤️
+      </strong>
+
+      <br><br>
+
+      কারণ তুমি শুধু আমার ভালোবাসা নও—
+
+      <br>
+
+      <strong>
+        তুমি আমার সবচেয়ে প্রিয় মানুষ। 🥹💕
+      </strong>
+
+      <br><br>
+
+      আর আমি চাই,
+      আমাদের এই গল্পটা
+      এখানেই শেষ না হয়ে
+      সারাজীবন চলতে থাকুক। ❤️♾️
+
+    </div>
+
+  </div>
+
 
 </div>
 
 </section>
 
-
-<section class="screen final hidden" id="final">
-
-<div class="inner">
-
-<div class="animals">
-🐰 💕  💕 🐱
-</div>
-
-<div class="couple">
-🐻
-</div>
-
-<h2>Happy Anniversary</h2>
-
-<h3>
-Aornob ❤️ Mim
-</h3>
-
-<p>
-তুমি আমার জীবনের সবচেয়ে special মানুষ। ❤️<br><br>
-
-তোমাকে আমি প্রতিদিনই নতুন করে ভালোবাসতে চাই। 🥹💕<br>
-
-তোমার হাসি আর তোমার সাথে কাটানো ছোট ছোট মুহূর্তগুলো আমার কাছে সবসময় precious থাকবে। ✨<br><br><br>
-
-<strong>
-তোমাকেই বারবার বেছে নেব। ❤️
-</strong>
-
-<br><br>
-
-<strong>
-তুমি আর আমি — এভাবেই, সবসময়। ♾️❤️
-</strong>
-</p>
-
-<div class="forever">
-∞ Together Forever ∞
-</div>
-
-<button class="btn" style="margin-top:20px" onclick="secret()">
-For You, One More Thing 💗
-</button>
-
-<div class="secret" id="secret">
-যদি আমাকে আবারও choose করার সুযোগ দেওয়া হয়,<br>
-আমি আবারও তোমাকেই choose করব। ❤️<br><br>
-
-<strong>
-Because you're my favorite person. 🥹💕
-</strong>
-</div>
-
-</div>
-
-</section>
 
 
 <script>
 
-const stars=document.getElementById('stars');
+/* =========================
+   STARS
+========================= */
 
-for(let i=0;i<32;i++){
+const stars =
+  document.getElementById("stars");
 
-  let s=document.createElement('i');
+for(let i=0;i<28;i++){
 
-  s.className='star';
+  const s =
+    document.createElement("i");
 
-  s.style.left=Math.random()*100+'vw';
+  s.className="star";
 
-  s.style.top=Math.random()*100+'vh';
+  s.style.left =
+    Math.random()*100+"vw";
 
-  s.style.animationDelay=Math.random()*2.5+'s';
+  s.style.top =
+    Math.random()*100+"vh";
+
+  s.style.animationDelay =
+    Math.random()*2.5+"s";
 
   stars.appendChild(s);
 }
 
 
+
+/* =========================
+   HEART
+========================= */
+
 function heart(){
 
-  let h=document.createElement('div');
+  const h =
+    document.createElement("div");
 
-  h.className='heart';
+  h.className="heart";
 
-  h.textContent=Math.random()>.5?'❤️':'💖';
+  h.textContent =
+    Math.random()>0.5
+      ? "❤️"
+      : "💖";
 
-  h.style.left=Math.random()*100+'vw';
+  h.style.left =
+    Math.random()*100+"vw";
 
-  h.style.fontSize=14+Math.random()*18+'px';
+  h.style.fontSize =
+    14+Math.random()*18+"px";
 
-  h.style.animationDuration=4+Math.random()*3+'s';
+  h.style.animationDuration =
+    4+Math.random()*3+"s";
 
   document.body.appendChild(h);
 
-  setTimeout(()=>h.remove(),7500);
+  setTimeout(
+    ()=>h.remove(),
+    7500
+  );
 }
 
+
+
+/* =========================
+   HEART BURST
+========================= */
 
 function burst(n){
 
   for(let i=0;i<n;i++){
 
-    setTimeout(heart,i*55);
+    setTimeout(
+      heart,
+      i*55
+    );
 
   }
-
 }
 
 
+
+/* =========================
+   OPEN SITE
+========================= */
+
 function openSite(){
 
-  const open=document.getElementById('open');
+  const open =
+    document.getElementById("open");
 
-  const main=document.getElementById('main');
+  const main =
+    document.getElementById("main");
 
-  open.classList.add('hidden');
+  open.classList.add("hidden");
 
   setTimeout(()=>{
 
-    main.classList.remove('hidden');
+    main.classList.remove("hidden");
 
   },500);
 
@@ -509,90 +1640,135 @@ function openSite(){
 }
 
 
+
+/* =========================
+   OPEN LETTER
+========================= */
+
 function openLetter(){
 
-  document.getElementById('letter').classList.add('show');
+  document
+    .getElementById("letter")
+    .classList.add("show");
 
-  document.getElementById('letterBtn').style.display='none';
+  document
+    .getElementById("letterBtn")
+    .style.display="none";
 
-  document.getElementById('nextBtn').classList.add('show');
+  document
+    .getElementById("nextBtn")
+    .style.display="inline-block";
 
   burst(15);
 }
 
 
+
+/* =========================
+   SHOW FULL STORY
+========================= */
+
 function showFinal(){
 
-  const main=document.getElementById('main');
+  const main =
+    document.getElementById("main");
 
-  const final=document.getElementById('final');
+  const final =
+    document.getElementById("final");
 
-  main.classList.add('hidden');
+  main.classList.add("hidden");
 
   setTimeout(()=>{
 
-    final.classList.remove('hidden');
+    final.classList.remove("hidden");
+
+    /*
+      Important:
+      Story শুরু হলে একদম উপরে থাকবে
+    */
+
+    final.scrollTop=0;
 
   },500);
 
-  burst(25);
+  burst(20);
 
-  for(let i=0;i<18;i++){
+  /* sparkle effect */
+
+  for(let i=0;i<14;i++){
 
     setTimeout(()=>{
 
-      let s=document.createElement('div');
+      const s =
+        document.createElement("div");
 
-      s.className='spark';
+      s.className="spark";
 
-      s.textContent=
-        ['✨','💕','💖','✦']
+      s.textContent =
+        ["✨","💕","💖","✦"]
         [Math.floor(Math.random()*4)];
 
-      s.style.left='50vw';
-
-      s.style.top='50vh';
+      s.style.left="50vw";
+      s.style.top="45vh";
 
       s.style.setProperty(
-        '--x',
-        (Math.random()*260-130)+'px'
+        "--x",
+        (Math.random()*260-130)+"px"
       );
 
       s.style.setProperty(
-        '--y',
-        (Math.random()*420-210)+'px'
+        "--y",
+        (Math.random()*400-200)+"px"
       );
 
       document.body.appendChild(s);
 
-      setTimeout(()=>s.remove(),1400);
+      setTimeout(
+        ()=>s.remove(),
+        1400
+      );
 
     },i*45);
 
   }
+
 }
 
+
+
+/* =========================
+   SECRET MESSAGE
+========================= */
 
 function secret(){
 
-  document.getElementById('secret').classList.toggle('show');
+  document
+    .getElementById("secret")
+    .classList.toggle("show");
 
   burst(10);
+
 }
 
+
+
+/* =========================
+   LIGHT HEARTS
+   MOBILE FRIENDLY
+========================= */
 
 setInterval(()=>{
 
   if(
-    document.visibilityState==='visible' &&
-    Math.random()>.7
+    document.visibilityState==="visible" &&
+    Math.random()>.72
   ){
 
     heart();
 
   }
 
-},1900);
+},2200);
 
 </script>
 
